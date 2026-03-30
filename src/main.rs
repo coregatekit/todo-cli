@@ -1,18 +1,5 @@
-use clap::{Parser, Subcommand};
-
-#[derive(Parser, Debug)]
-#[command(name = "todo")]
-#[command(about = "A simple CLI todo application", long_about = None)]
-struct Cli {
-    #[command(subcommand)]
-    command: Commands,
-}
-
-#[derive(Subcommand, Debug)]
-enum Commands {
-    Add { title: String },
-    List,    
-}
+use clap::Parser;
+use todo_cli::{Cli, Commands};
 
 fn main() {
     let cli = Cli::parse();
