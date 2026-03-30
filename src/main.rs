@@ -1,17 +1,8 @@
 use clap::Parser;
-use todo_cli::{Cli, Commands};
+use todo_cli::{Cli};
 
 fn main() {
     let cli = Cli::parse();
-
-    match cli.command {
-        Commands::Add { title } => {
-            println!("Adding todo: {}", title);
-            // Here you would add the logic to save the todo item
-        }
-        Commands::List => {
-            println!("Listing all todos...");
-            // Here you would add the logic to retrieve and display all todo items
-        }
-    }
+    let out = todo_cli::run(cli);
+    print!("{out}");
 }

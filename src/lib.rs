@@ -13,3 +13,10 @@ pub enum Commands {
     Add { title: String },
     List,
 }
+
+pub fn run(cli: Cli) -> String {
+    match cli.command {
+        Commands::Add { title } => format!("Added: {title}\n"),
+        Commands::List => "No items\n".to_string(),
+    }
+}
