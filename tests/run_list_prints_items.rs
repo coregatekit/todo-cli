@@ -26,5 +26,5 @@ fn run_list_prints_items_from_json_file() {
     let cli = Cli::parse_from(["todo", "--store", store.to_str().unwrap(), "list"]);
     let out = todo_cli::run(cli).unwrap();
 
-    assert_eq!(out, "- learn rust\n- write tests\n");
+    assert_eq!(out, "1. [ ] learn rust\n2. [ ] write tests\n");
 }

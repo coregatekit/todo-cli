@@ -20,8 +20,9 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
                 Ok("No items\n".to_string())
             } else {
                 let mut out = String::new();
-                for items in list.items {
-                    out.push_str(&format!("- {}\n", items.title));
+                for (i, item) in list.items.iter().enumerate() {
+                    let status = if item.done { "[x]" } else { "[ ]" };
+                    out.push_str(&format!("{}. {} {}\n", i + 1, status, item.title));
                 }
                 Ok(out)
             }
