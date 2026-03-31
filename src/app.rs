@@ -45,7 +45,19 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             list.items[idx].done = true;
             save_list(&cli.store, &list)?;
             Ok(format!("Done: {id}\n"))
-        },
-        Commands::Rm { id } => Ok(format!("Removed: {id}\n")),
+        }
+        Commands::Rm { id } => {
+            let mut list = load_list(&cli.store)?;
+
+            if id == 0 || id > list.items.len() {
+                return Err(format!("Invalid item ID: {id}").into());
+            }
+
+            let idx = id - 1;
+            list.items.remove(idx);
+
+            save_list(&cli.store, &list)?;
+            Ok(format!("Removed: {id}\n"))
+        }
     }
 }
