@@ -58,6 +58,7 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
 
             save_list(&cli.store, &list)?;
             Ok(format!("Removed: {id}\n"))
-        }
+        },
+        Commands::Clean => Ok(format!("Finished clear all tasks\n")),
     }
 }

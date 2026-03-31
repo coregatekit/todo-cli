@@ -25,4 +25,5 @@ pub enum Commands {
     Rm {
         id: usize,
     },
+    Clean,
 }
