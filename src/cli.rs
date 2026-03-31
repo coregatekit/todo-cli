@@ -4,7 +4,7 @@ use clap::{Parser, Subcommand};
 #[command(name = "todo")]
 #[command(about = "A tiny todo CLI (TDD learning project)", long_about = None)]
 pub struct Cli {
-    // Path to store json file
+    /// Path to store json file
     #[arg(long, default_value = "todo.json")]
     pub store: std::path::PathBuf,
 
@@ -14,16 +14,21 @@ pub struct Cli {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
+    /// Add a new todo item with the given title. e.g. `todo add "learn rust"`
     Add {
         // Add a new todo item with the given title.
         title: String,
     },
+    /// List all todo items, showing their ID, title, and completion status. e.g. `todo list`
     List,
+    /// Mark a todo item as done by its ID. e.g. `todo done 1`
     Done {
         id: usize,
     },
+    /// Remove a todo item by its ID. e.g. `todo rm 1`
     Rm {
         id: usize,
     },
+    /// Clear all todo items. e.g. `todo clean`
     Clean,
 }
