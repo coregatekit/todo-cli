@@ -29,10 +29,17 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
         },
         Commands::Done { id } => {
             let mut list = load_list(&cli.store)?;
+
             if id == 0 || id > list.items.len() {
                 return Err(format!("Invalid item ID: {id}").into());
             }
-            list.items[id - 1].done = true;
+
+            let idx = id - 1;
+            if list.items[idx].done {
+                return Err(format!("Already done: {id}").into());
+            }
+
+            list.items[idx].done = true;
             save_list(&cli.store, &list)?;
             Ok(format!("Done: {id}\n"))
         },
