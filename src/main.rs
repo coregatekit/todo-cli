@@ -3,6 +3,11 @@ use todo_cli::{Cli};
 
 fn main() {
     let cli = Cli::parse();
-    let out = todo_cli::run(cli);
-    print!("{out}");
+    match todo_cli::run(cli) {
+        Ok(out)=>print!("{}", out),
+        Err(err) => {
+            eprintln!("{err}");
+            std::process::exit(1);
+        }
+    }
 }
