@@ -5,6 +5,10 @@ use clap::{Parser, Subcommand};
 #[command(name = "todo")]
 #[command(about = "A tiny todo CLI (TDD learning project)", long_about = None)]
 pub struct Cli {
+    // Path to store json file
+    #[arg(long, default_value = "todo.json")]
+    pub store: std::path::PathBuf,
+
     #[command(subcommand)]
     pub command: Commands,
 }
