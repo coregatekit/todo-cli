@@ -6,7 +6,7 @@ use todo_cli::Cli;
 #[test]
 fn run_add_persists_item_to_json_file() {
     let dir = tempfile::tempdir().unwrap();
-    let store = dir.path().join("todo.json");
+    let store = dir.path().join("test.json");
 
     let cli = Cli::parse_from([
       "todo",

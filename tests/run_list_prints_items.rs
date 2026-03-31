@@ -9,7 +9,7 @@ use todo_cli::{
 #[test]
 fn run_list_prints_items_from_json_file() {
     let dir = tempfile::tempdir().unwrap();
-    let store = dir.path().join("todo.json");
+    let store = dir.path().join("test.json");
 
     let list = TodoList {
         items: vec![
