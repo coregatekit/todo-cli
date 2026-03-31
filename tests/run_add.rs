@@ -1,5 +1,5 @@
 use clap::Parser;
-use todo_cli::models::Cli;
+use todo_cli::Cli;
 
 #[test]
 fn run_add_returns_added_line() {

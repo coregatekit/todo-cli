@@ -1,5 +1,5 @@
 use clap::Parser;
-use todo_cli::models::{Cli, Commands};
+use todo_cli::{Cli, Commands};
 
 #[test]
 fn parse_done_command() {

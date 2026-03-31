@@ -1,5 +1,5 @@
 use clap::Parser;
-use todo_cli::models::{Cli, Commands};
+use todo_cli::{Cli, Commands};
 
 #[test]
 fn parse_add_command() {
@@ -18,7 +18,7 @@ fn parse_store_option() {
     assert_eq!(cli.store.to_string_lossy(), "my.json");
 
     match cli.command {
-        Commands::List => {},
+        Commands::List => {}
         _ => panic!("Expected List command"),
     }
 }

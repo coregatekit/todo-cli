@@ -1,7 +1,7 @@
 use std::fs;
 
 use clap::Parser;
-use todo_cli::models::{Cli, TodoList};
+use todo_cli::{Cli, TodoItem, TodoList};
 
 #[test]
 fn run_done_marks_item_as_done() {
@@ -9,16 +9,16 @@ fn run_done_marks_item_as_done() {
     let store = dir.path().join("test.json");
 
     let list = TodoList {
-      items: vec![
-        todo_cli::models::TodoItem {
-          title: "learn rust".to_string(),
-          done: false,
-        },
-        todo_cli::models::TodoItem {
-          title: "write tests".to_string(),
-          done: false,
-        },
-      ],
+        items: vec![
+            TodoItem {
+                title: "learn rust".to_string(),
+                done: false,
+            },
+            TodoItem {
+                title: "write tests".to_string(),
+                done: false,
+            },
+        ],
     };
 
     fs::write(&store, serde_json::to_string_pretty(&list).unwrap()).unwrap();
@@ -42,16 +42,16 @@ fn run_done_marks_item_as_done_but_invalid_id() {
     let store = dir.path().join("test.json");
 
     let list = TodoList {
-      items: vec![
-        todo_cli::models::TodoItem {
-          title: "learn rust".to_string(),
-          done: false,
-        },
-        todo_cli::models::TodoItem {
-          title: "write tests".to_string(),
-          done: false,
-        },
-      ],
+        items: vec![
+            TodoItem {
+                title: "learn rust".to_string(),
+                done: false,
+            },
+            TodoItem {
+                title: "write tests".to_string(),
+                done: false,
+            },
+        ],
     };
 
     fs::write(&store, serde_json::to_string_pretty(&list).unwrap()).unwrap();

@@ -1,7 +1,7 @@
 use std::fs;
 
 use clap::Parser;
-use todo_cli::models::{Cli, TodoItem, TodoList};
+use todo_cli::{Cli, TodoItem, TodoList};
 
 #[test]
 fn list_shows_ids_and_done_status() {
@@ -9,16 +9,16 @@ fn list_shows_ids_and_done_status() {
     let store = dir.path().join("test.json");
 
     let list = TodoList {
-      items: vec![
-        TodoItem {
-          title: "learn rust".to_string(),
-          done: false,
-        },
-        TodoItem {
-          title: "write tests".to_string(),
-          done: true,
-        },
-      ],
+        items: vec![
+            TodoItem {
+                title: "learn rust".to_string(),
+                done: false,
+            },
+            TodoItem {
+                title: "write tests".to_string(),
+                done: true,
+            },
+        ],
     };
     fs::write(&store, serde_json::to_string_pretty(&list).unwrap()).unwrap();
 
