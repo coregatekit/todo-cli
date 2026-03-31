@@ -28,7 +28,10 @@ pub struct Cli {
 pub enum Commands {
     Add {
         // Add a new todo item with the given title.
-        title: String
+        title: String,
     },
     List,
+    Done {
+        id: usize,
+    },
 }

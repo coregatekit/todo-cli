@@ -25,7 +25,8 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
                 }
                 Ok(out)
             }
-        }
+        },
+        Commands::Done { id } => Ok(format!("{id}")),
     }
 }
 
