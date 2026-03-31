@@ -61,6 +61,9 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
         },
         Commands::Clean => {
             let mut list = load_list(&cli.store)?;
+            if list.items.is_empty() {
+                return Ok("No items to clear\n".to_string());
+            }
             let count = list.items.len();
             list.items.clear();
             save_list(&cli.store, &list)?;
