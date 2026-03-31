@@ -1,10 +1,7 @@
 use std::fs;
 
 use clap::Parser;
-use todo_cli::{
-    Cli,
-    models::{TodoItem, TodoList},
-};
+use todo_cli::models::{Cli, TodoItem, TodoList};
 
 #[test]
 fn run_list_prints_items_from_json_file() {

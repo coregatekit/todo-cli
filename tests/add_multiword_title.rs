@@ -1,5 +1,5 @@
 use clap::Parser;
-use todo_cli::{Cli, models::TodoList};
+use todo_cli::{models::Cli, models::TodoList};
 
 #[test]
 fn add_accepts_multiword_title_without_quotes() {

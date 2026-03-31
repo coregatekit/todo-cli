@@ -1,5 +1,6 @@
 use clap::Parser;
-use todo_cli::{Cli};
+use todo_cli::models::Cli;
+
 
 fn main() {
     let cli = Cli::parse();
