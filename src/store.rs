@@ -11,6 +11,9 @@ pub fn load_list(path: &PathBuf) -> Result<TodoList, Box<dyn Error>> {
 }
 
 pub fn save_list(path: &PathBuf, list: &TodoList) -> Result<(), Box<dyn Error>> {
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent)?;
+    }
     let json = serde_json::to_string_pretty(list)?;
     fs::write(path, json)?;
     Ok(())

@@ -1,24 +1,24 @@
 use std::error::Error;
 
 use crate::{
-    cli::{Cli, Commands},
-    domain::TodoItem,
-    store::{load_list, save_list},
+    cli::{Cli, Commands}, domain::TodoItem, path::default_store_path, store::{load_list, save_list}
 };
 
 pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
+    let store_path = cli.store.clone().unwrap_or_else(default_store_path);
+
     match cli.command {
         Commands::Add { title } => {
-            let mut list = load_list(&cli.store)?;
+            let mut list = load_list(&store_path)?;
             list.items.push(TodoItem {
                 title: title.clone(),
                 done: false,
             });
-            save_list(&cli.store, &list)?;
+            save_list(&store_path, &list)?;
             Ok(format!("Added: {title}\n"))
         }
         Commands::List => {
-            let list = load_list(&cli.store)?;
+            let list = load_list(&store_path)?;
             if list.items.is_empty() {
                 Ok("No items\n".to_string())
             } else {
@@ -31,7 +31,7 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             }
         }
         Commands::Done { id } => {
-            let mut list = load_list(&cli.store)?;
+            let mut list = load_list(&store_path)?;
 
             if id == 0 || id > list.items.len() {
                 return Err(format!("Invalid item ID: {id}").into());
@@ -43,11 +43,11 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             }
 
             list.items[idx].done = true;
-            save_list(&cli.store, &list)?;
+            save_list(&store_path, &list)?;
             Ok(format!("Done: {id}\n"))
         }
         Commands::Rm { id } => {
-            let mut list = load_list(&cli.store)?;
+            let mut list = load_list(&store_path)?;
 
             if id == 0 || id > list.items.len() {
                 return Err(format!("Invalid item ID: {id}").into());
@@ -56,17 +56,17 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             let idx = id - 1;
             list.items.remove(idx);
 
-            save_list(&cli.store, &list)?;
+            save_list(&store_path, &list)?;
             Ok(format!("Removed: {id}\n"))
         },
         Commands::Clean => {
-            let mut list = load_list(&cli.store)?;
+            let mut list = load_list(&store_path)?;
             if list.items.is_empty() {
                 return Ok("No items to clear\n".to_string());
             }
             let count = list.items.len();
             list.items.clear();
-            save_list(&cli.store, &list)?;
+            save_list(&store_path, &list)?;
             Ok(format!("Cleared {count} items\n"))
         },
     }
