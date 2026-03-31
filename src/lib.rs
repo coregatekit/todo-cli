@@ -19,13 +19,19 @@ pub struct Cli {
 
 #[derive(Subcommand, Debug)]
 pub enum Commands {
-    Add { title: String },
+    Add {
+        // Add a new todo item with the given title. Multiple words are supported.
+        #[arg(required = true, trailing_var_arg = true)]
+        title: Vec<String>,
+    },
     List,
 }
 
 pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
     match cli.command {
         Commands::Add { title } => {
+            let title = title.join(" ");
+
             let mut list = load_list(&cli.store)?;
             list.items.push(TodoItem {
                 title: title.clone(),
@@ -44,7 +50,7 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
                 }
                 Ok(out)
             }
-        },
+        }
     }
 }
 
