@@ -26,9 +26,8 @@ pub struct Cli {
 #[derive(Subcommand, Debug)]
 pub enum Commands {
     Add {
-        // Add a new todo item with the given title. Multiple words are supported.
-        #[arg(required = true, trailing_var_arg = true)]
-        title: Vec<String>,
+        // Add a new todo item with the given title.
+        title: String
     },
     List,
 }

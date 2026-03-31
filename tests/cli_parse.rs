@@ -7,7 +7,7 @@ fn parse_add_command() {
     assert_eq!(cli.store.to_string_lossy(), "test.json");
 
     match cli.command {
-        Commands::Add { title } => assert_eq!(title.join(" "), "learn-rust"),
+        Commands::Add { title } => assert_eq!(title, "learn-rust"),
         _ => panic!("Expected Add command"),
     }
 }

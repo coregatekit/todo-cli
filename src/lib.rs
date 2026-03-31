@@ -6,8 +6,6 @@ use crate::models::{Cli, Commands, TodoItem, TodoList};
 pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
     match cli.command {
         Commands::Add { title } => {
-            let title = title.join(" ");
-
             let mut list = load_list(&cli.store)?;
             list.items.push(TodoItem {
                 title: title.clone(),
