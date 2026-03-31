@@ -1,3 +1,4 @@
+pub mod models;
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
@@ -23,19 +24,19 @@ pub fn run(cli: Cli) -> String {
 
 #[cfg(test)]
 mod json_tests {
-  use super::*;
+    use crate::models::{TodoItem, TodoList};
 
-  #[test]
-  fn todo_list_roundtrip_through_json() {
-    let mut list = TodoList::default();
-    list.items.push(TodoItem {
-      title: "learn rust".to_string(),
-    });
+    #[test]
+    fn todo_list_roundtrip_through_json() {
+        let mut list = TodoList::default();
+        list.items.push(TodoItem {
+            title: "learn rust".to_string(),
+        });
 
-    let json = serde_json::to_string(&list).unwrap();
-    let decoded: TodoList = serde_json::from_str(&json).unwrap();
+        let json = serde_json::to_string(&list).unwrap();
+        let decoded: TodoList = serde_json::from_str(&json).unwrap();
 
-    assert_eq!(decoded.items.len(), 1);
-    assert_eq!(decoded.items[0].title, "learn rust");
-  }
+        assert_eq!(decoded.items.len(), 1);
+        assert_eq!(decoded.items[0].title, "learn rust");
+    }
 }
