@@ -22,4 +22,7 @@ pub enum Commands {
     Done {
         id: usize,
     },
+    Rm {
+        id: usize,
+    },
 }

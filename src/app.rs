@@ -45,6 +45,7 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             list.items[idx].done = true;
             save_list(&cli.store, &list)?;
             Ok(format!("Done: {id}\n"))
-        }
+        },
+        Commands::Rm { id } => Ok(format!("{id}")),
     }
 }
