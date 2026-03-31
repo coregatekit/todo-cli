@@ -38,7 +38,11 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             if list.items.is_empty() {
                 Ok("No items\n".to_string())
             } else {
-                Ok("No items\n".to_string()) // mock return for now, will implement later
+                let mut out = String::new();
+                for items in list.items {
+                    out.push_str(&format!("- {}\n", items.title));
+                }
+                Ok(out)
             }
         },
     }
