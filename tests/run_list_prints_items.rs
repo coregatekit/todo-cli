@@ -12,9 +12,11 @@ fn run_list_prints_items_from_json_file() {
         items: vec![
             TodoItem {
                 title: "learn rust".to_string(),
+                done: false,
             },
             TodoItem {
                 title: "write tests".to_string(),
+                done: false,
             },
         ],
     };

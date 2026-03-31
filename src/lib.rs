@@ -9,6 +9,7 @@ pub fn run(cli: Cli) -> Result<String, Box<dyn Error>> {
             let mut list = load_list(&cli.store)?;
             list.items.push(TodoItem {
                 title: title.clone(),
+                done: false,
             });
             save_list(&cli.store, &list)?;
             Ok(format!("Added: {title}\n"))
@@ -51,6 +52,7 @@ mod json_tests {
         let mut list = TodoList::default();
         list.items.push(TodoItem {
             title: "learn rust".to_string(),
+            done: false,
         });
 
         let json = serde_json::to_string(&list).unwrap();

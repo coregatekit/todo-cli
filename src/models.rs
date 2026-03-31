@@ -9,6 +9,7 @@ pub struct TodoList {
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TodoItem {
     pub title: String,
+    pub done: bool,
 }
 
 #[derive(Parser, Debug)]
